@@ -19,7 +19,7 @@ export const CartReducers= (state=[],action)=>{
     if(action.type === "INCREASE"){
         let tempCart = state.map((item)=>{
             if(item.id === action.payload.id){
-            return {...item, id:item.id+1}
+            return {...item, quantity:item.quantity+1}
             }
             return item;
         })

@@ -8,7 +8,7 @@ const CartView = () => {
   const cart = useSelector(state=>state)
   console.log(cart)
   let dispatch= useDispatch();
-  const addition =(acc, currentvalue)=>acc + currentvalue.price * currentvalue.id;
+  const addition =(acc, currentvalue)=>acc + currentvalue.price * currentvalue.quantity;
   
   
   const total = cart.reduce(addition,0);
@@ -26,8 +26,8 @@ const CartView = () => {
             <img src= {item.image} alt =".." width="100rem"/>
 
             <h4> ${item.price}</h4>
-            <p> quantity {item.id}</p>
-            <p>Total: ${item.price * item.id}</p>
+            <p> quantity {item.quantity}</p>
+            <p>Total: ${item.price * item.quantity}</p>
             <Button variant='contained' color="success"
                   onClick={() => dispatch({ type: "REMOVE", payload: item })}
                 >
@@ -42,7 +42,7 @@ const CartView = () => {
 
                 <Button variant='outlined' color="success"
                   onClick={()=>{
-                     if(item.quantity >1){
+                     if(item.quantity>1){
                        dispatch({type:'DECREASE',payload:item})
                      }
                      else{
